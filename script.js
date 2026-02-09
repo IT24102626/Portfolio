@@ -3,24 +3,30 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const themeToggle = document.getElementById('theme-toggle');
+const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
 const navbar = document.querySelector('.navbar');
 const contactForm = document.querySelector('.contact-form');
 
+// Mobile Navigation Elements
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+const mobileCtaBtn = document.querySelector('.mobile-cta-btn');
+
 // Mobile Navigation Toggle
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
     hamburger.classList.toggle('active');
 });
 
 // Close mobile menu when clicking on a link
-navLinks.forEach(link => {
+mobileNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
         
         // Close mobile menu
-        navMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
         hamburger.classList.remove('active');
         
         // Smooth scroll to section
@@ -34,7 +40,37 @@ navLinks.forEach(link => {
     });
 });
 
-// Theme Toggle
+// Close mobile menu when clicking CTA button
+if (mobileCtaBtn) {
+    mobileCtaBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = mobileCtaBtn.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        // Close mobile menu
+        mobileMenuOverlay.classList.remove('active');
+        hamburger.classList.remove('active');
+        
+        // Smooth scroll to section
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenuOverlay.contains(e.target)) {
+        mobileMenuOverlay.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+
+// Theme Toggle - Desktop
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     
@@ -50,6 +86,25 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'light');
     }
 });
+
+// Theme Toggle - Mobile
+if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        // Update icon
+        const icon = mobileThemeToggle.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
 // Load saved theme from localStorage
 const savedTheme = localStorage.getItem('theme');
