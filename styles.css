@@ -1328,10 +1328,13 @@ transition: all 0.3s ease;
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
+        max-width: 100%;
     }
     
     .navbar {
         padding: 1rem 0;
+        width: calc(100% - 40px);
+        top: 10px;
     }
     
     .nav-menu {
@@ -1345,6 +1348,7 @@ transition: all 0.3s ease;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(30, 58, 138, 0.2);
         padding: 2rem 0;
+        z-index: 999;
     }
     
     .nav-menu.active {
@@ -1354,11 +1358,13 @@ transition: all 0.3s ease;
     .nav-link {
         font-size: 1.2rem;
         margin: 0.5rem 0;
+        color: white !important;
     }
     
     .hamburger {
         display: block;
         cursor: pointer;
+        z-index: 1000;
     }
     
     .hamburger.active .bar:nth-child(2) {
@@ -1375,19 +1381,30 @@ transition: all 0.3s ease;
     
     .hero {
         padding: 100px 0 50px;
+        min-height: auto;
     }
     
     .hero-container {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         text-align: center;
+        gap: 2rem;
+        padding: 0 20px;
     }
     
     .hero-content {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+        order: 2;
+    }
+    
+    .hero-image {
+        order: 1;
+        margin-bottom: 2rem;
     }
     
     .hero-title {
         font-size: 2.5rem;
+        line-height: 1.2;
     }
     
     .hero-subtitle {
@@ -1410,26 +1427,43 @@ transition: all 0.3s ease;
     }
     
     .about-content {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         gap: 2rem;
+        text-align: center;
+    }
+    
+    .about-left {
+        order: 2;
+    }
+    
+    .about-right {
+        order: 1;
     }
     
     .about-stats {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         gap: 1rem;
     }
     
     .skills-grid {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
     }
     
     .contact-content {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         gap: 2rem;
+        text-align: center;
     }
     
     .section-title {
@@ -1462,15 +1496,36 @@ transition: all 0.3s ease;
     
     .education-card {
         margin-bottom: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .education-icon {
+        margin: 0 auto 1rem;
     }
     
     .skill-category {
         margin-bottom: 1.5rem;
     }
     
+    .skill-tags {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
     /* Mobile scroll indicators */
     .scroll-progress {
         display: none;
+    }
+    
+    /* Force mobile layouts */
+    .hero-container,
+    .about-content,
+    .skills-grid,
+    .projects-grid,
+    .contact-content {
+        display: flex !important;
+        flex-direction: column !important;
     }
 }
 
@@ -1528,5 +1583,83 @@ transition: all 0.3s ease;
 
     .contact-form {
         padding: 1.5rem;
+    }
+    
+    /* Additional mobile fixes */
+    .navbar {
+        width: calc(100% - 30px);
+        padding: 0.5rem 15px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .theme-toggle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 15px;
+    }
+    
+    .about-profile-img {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-card {
+        margin-bottom: 1rem;
+    }
+    
+    .education-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .education-icon {
+        margin: 0 auto 1rem;
+    }
+    
+    .skill-tags {
+        justify-content: center;
+    }
+    
+    .hero-social {
+        justify-content: center;
+    }
+    
+    .contact-social {
+        justify-content: center;
     }
 }
