@@ -683,7 +683,6 @@ body:not(.dark-mode) .social-link {
     z-index: 2;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    animation: professionalFloat 6s ease-in-out infinite;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -726,12 +725,89 @@ body:not(.dark-mode) .social-link {
     position: relative;
 }
 
-.profile-img {
+/* Clean Profile Layout with Morphing */
+.profile-container {
+    width: 500px;
+    height: 500px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    overflow: hidden;
+    border: 3px solid rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 1s ease-in-out;
+    animation: organicMorph 8s ease-in-out infinite;
+}
+
+body:not(.dark-mode) .profile-container {
+    border: 3px solid rgba(0, 102, 204, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes organicMorph {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        border-radius: 69.6737% 40.2176% 30.4351% 69.5649% / 59.6736% 59.8912% 40.2176% 30.3263%;
+        transform: scale(1.05) rotate(2deg);
+    }
+    50% {
+        border-radius: 30% 70% 60% 40% / 70% 40% 30% 60%;
+        transform: scale(1.1) rotate(-1deg);
+    }
+    75% {
+        border-radius: 40% 60% 70% 30% / 40% 70% 60% 30%;
+        transform: scale(1.03) rotate(1deg);
+    }
+}
+
+.clean-profile-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
+}
+
+.profile-container:hover .clean-profile-img {
+    transform: scale(1.05);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 350px;
+        height: 350px;
+        border-width: 2px;
+        animation: organicMorph 8s ease-in-out infinite; /* Enable animation on mobile */
+    }
+}
+
+/* Hide old profile styles */
+.hero .profile-card {
+    display: none;
+}
+
+.profile-img {
+    display: none;
+}
+
+@keyframes profileMorph {
+    0%, 100% {
+        border-radius: 0;
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        border-radius: 0;
+        transform: scale(1.05) rotate(2deg);
+    }
+    50% {
+        border-radius: 0;
+        transform: scale(1.1) rotate(-1deg);
+    }
+    75% {
+        border-radius: 0;
+        transform: scale(1.03) rotate(1deg);
+    }
 }
 
 .profile-img:hover {
