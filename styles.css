@@ -727,8 +727,8 @@ body:not(.dark-mode) .social-link {
 
 /* Clean Profile Layout with Morphing */
 .profile-container {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     overflow: hidden;
     border: 3px solid rgba(0, 212, 255, 0.3);
@@ -775,10 +775,10 @@ body:not(.dark-mode) .profile-container {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .profile-container {
-        width: 350px;
-        height: 350px;
+        width: 250px;
+        height: 250px;
         border-width: 2px;
-        animation: organicMorph 8s ease-in-out infinite; /* Enable animation on mobile */
+        animation: none; /* Disable animation on mobile */
     }
 }
 
